@@ -16,4 +16,10 @@ class Song(models.Model):
     song_title=models.CharField(max_length=250)
 
     def __str__(self):
-        return self.song_title + '-' + self.album
+        return self.song_title
+
+class Playlist(models.Model):
+    Playlist_name=models.CharField(default='',max_length=255)
+    song=models.ForeignKey(Song,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.Playlist_name
