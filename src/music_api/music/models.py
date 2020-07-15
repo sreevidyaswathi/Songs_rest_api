@@ -1,4 +1,10 @@
 from django.db import models
+from django.urls import reverse
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import BaseUserManager
+
+
 
 # Create your models here.
 class Album(models.Model):
@@ -21,5 +27,7 @@ class Song(models.Model):
 class Playlist(models.Model):
     Playlist_name=models.CharField(default='',max_length=255)
     song=models.ForeignKey(Song,on_delete=models.CASCADE)
+    def get_absolute_url(self):
+        return reverse('music:detail',kwargs ={'pk':self.pk})
     def __str__(self):
         return self.Playlist_name
